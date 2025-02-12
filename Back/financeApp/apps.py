@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class TransaccionesConfig(AppConfig):
+class financeAppConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'transacciones'
+    name = 'financeApp'
