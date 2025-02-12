@@ -70,7 +70,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'financeBack.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
@@ -80,6 +79,20 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'mysql_finanzas',
+#         'USER': 'tadeo',
+#         'PASSWORD': 'pass1234',
+#         'HOST': 'db',  # Nombre del servicio en docker-compose
+#         'PORT': '3307',
+#         'OPTIONS': {
+#             'charset': 'utf8mb4',
+#         },
+#     }
+# }
 
 
 # Password validation
