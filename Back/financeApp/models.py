@@ -12,6 +12,11 @@ class Categoria(models.Model):
 class Cuenta(models.Model):
     nombre = models.CharField(max_length=100)
     saldo = models.DecimalField(max_digits=12, decimal_places=2, default=0.00)
+    userID = models.ForeignKey(
+        User,  
+        on_delete=models.CASCADE, 
+        null=True
+    )
 
     def __str__(self):
         return self.nombre
@@ -20,6 +25,7 @@ class Presupuesto(models.Model):
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
     monto_maximo = models.DecimalField(max_digits=10, decimal_places=2)
     mes = models.DateField()
+    cuentaID = models.ForeignKey(Cuenta, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return f"Presupuesto {self.categoria} - {self.monto_maximo}"
@@ -32,10 +38,9 @@ class Transaccion(models.Model):
     descripcion = models.CharField(max_length=255)
     monto = models.DecimalField(max_digits=10, decimal_places=2)
     tipo = models.CharField(max_length=10, choices=TYPE_CHOICES)
-    fecha = models.DateField(auto_now_add=True)
-    categoria = models.ForeignKey(Categoria, on_delete=models.SET_NULL, null=True, blank=True)
-    cuenta = models.ForeignKey(Cuenta, on_delete=models.CASCADE)
-    usuario = models.ForeignKey(User, on_delete=models.CASCADE)
+    fecha = models.DateField()
+    categoriaID = models.ForeignKey(Categoria, on_delete=models.SET_NULL, null=True, blank=True)
+    cuentaID = models.ForeignKey(Cuenta, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return f"{self.tipo}: {self.descripcion} - {self.monto}"
