@@ -28,8 +28,6 @@ class UserAuthViewSet(viewsets.ViewSet):
 
         user = authenticate(request, username=username, password=password)
         if user is not None:
-            if request.user.is_authenticated:
-                logout(request)  # Cierra la sesión actual antes de iniciar una nueva
             login(request, user)
             csrf_token = get_token(request)  # Generar el token CSRF
             return Response(

@@ -8,10 +8,12 @@ class Categoria(models.Model):
 
     def __str__(self):
         return self.nombre
-    
+
 class Cuenta(models.Model):
-    nombre = models.CharField(max_length=100)
-    saldo = models.DecimalField(max_digits=12, decimal_places=2, default=0.00)
+    nombre = models.CharField(max_length=100, null=True)
+    alias = models.CharField(max_length=100, null=True)
+    cvu = models.CharField(max_length=100, null=True) 
+    saldo = models.DecimalField(max_digits=12, decimal_places=2, default=0.00, null=True)
     userID = models.ForeignKey(
         User,  
         on_delete=models.CASCADE, 
@@ -23,7 +25,7 @@ class Cuenta(models.Model):
     
 class Presupuesto(models.Model):
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
-    monto_maximo = models.DecimalField(max_digits=10, decimal_places=2)
+    monto_maximo = models.DecimalField(max_digits=10, decimal_places=2, null=True)
     mes = models.DateField()
     cuentaID = models.ForeignKey(Cuenta, on_delete=models.CASCADE, null=True)
 
