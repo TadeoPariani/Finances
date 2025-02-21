@@ -6,6 +6,7 @@ from rest_framework.permissions import IsAuthenticated
 from .models import Categoria, Cuenta, Presupuesto, Transaccion
 
 from .serializers import (
+    UserSerializer, 
     CategoriaSerializer, 
     CuentaSerializer, 
     PresupuestoSerializer, 
@@ -57,5 +58,6 @@ class PresupuestoViewSet(viewsets.ModelViewSet):
 class TransaccionViewSet(viewsets.ModelViewSet):
     queryset = Transaccion.objects.all()
     serializer_class = TransaccionSerializer
+    permission_classes = [IsAuthenticated]  # Solo usuarios autenticados pueden acceder
 
 
